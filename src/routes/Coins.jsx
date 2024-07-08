@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchList } from "../api";
 import { Helmet } from "react-helmet";
@@ -21,7 +21,7 @@ const ConisList = styled.ul``;
 
 const Coin = styled.li`
   background-color: white;
-  color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.textColor};
   margin-bottom: 10px;
 
   border-radius: 15px;
@@ -67,6 +67,7 @@ function Coins() {
     })();
   }, []); */
   const { isLoading, data } = useQuery(["allList"], fetchList);
+  const { toggleDark } = useOutletContext();
   return (
     <Container>
       <Helmet>
@@ -74,6 +75,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coin</Title>
+        <button onClick={toggleDark}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>

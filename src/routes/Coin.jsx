@@ -7,6 +7,7 @@ import {
   Outlet,
   useLocation,
   useMatch,
+  useOutletContext,
   useParams,
 } from "react-router-dom";
 import styled from "styled-components";
@@ -114,6 +115,7 @@ function Coin() {
   const loading = infoLoading || tickersLoading;
   const info = infoData;
   const price = tickersData;
+  const ctx = useOutletContext();
   return (
     <Container>
       <Helmet>
@@ -162,7 +164,7 @@ function Coin() {
             <Tab isActive={priceMatch !== null}>
               <Link to={`price`}>Price</Link>
             </Tab>
-            <Outlet />
+            <Outlet context={ctx} />
           </Tabs>
         </>
       )}
