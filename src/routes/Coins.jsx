@@ -3,6 +3,8 @@ import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchList } from "../api";
 import { Helmet } from "react-helmet";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -67,7 +69,8 @@ function Coins() {
     })();
   }, []); */
   const { isLoading, data } = useQuery(["allList"], fetchList);
-  const { toggleDark } = useOutletContext();
+  //const { toggleDark } = useOutletContext();
+  const toggleDark = useSetRecoilState(isDarkAtom);
   return (
     <Container>
       <Helmet>
@@ -75,7 +78,7 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coin</Title>
-        <button onClick={toggleDark}>Toggle Mode</button>
+        <button onClick={() => toggleDark((prev) => !prev)}>Toggle Mode</button>
       </Header>
       {isLoading ? (
         <Loader>Loading...</Loader>

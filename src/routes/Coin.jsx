@@ -115,7 +115,7 @@ function Coin() {
   const loading = infoLoading || tickersLoading;
   const info = infoData;
   const price = tickersData;
-  const ctx = useOutletContext();
+  //const ctx = useOutletContext();
   return (
     <Container>
       <Helmet>
@@ -164,7 +164,7 @@ function Coin() {
             <Tab isActive={priceMatch !== null}>
               <Link to={`price`}>Price</Link>
             </Tab>
-            <Outlet context={ctx} />
+            <Outlet />
           </Tabs>
         </>
       )}
