@@ -1,6 +1,13 @@
-export const theme = {
+export const darkTheme = {
   bgColor: "#2f3640",
-  textColor: "#f5f6fa",
+  textColor: "black",
+  btnColor: "tomato",
+  accentColor: "#44bd32",
+};
+
+export const lightTheme = {
+  bgColor: "grey",
+  textColor: "black",
   btnColor: "tomato",
   accentColor: "#44bd32",
 };

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -67,10 +68,15 @@ a {
 }
 `;
 function Root() {
+  const [dark, setDark] = useState(false);
+  //const [loggedIn, setLoggedIn] = useState(false);
+  const toggleDark = () => setDark((current) => !current);
   return (
     <>
-      <GlobalStyle />
-      <Outlet />
+      <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Outlet context={{ toggleDark, dark }} />
+      </ThemeProvider>
     </>
   );
 }
